@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Management: Interno vs Consultoria</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            border-left: 5px solid #4ECDC4;
+        }
+
+        .question {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .calculate-btn {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .result-interno {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .result-consultoria {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .result-hibrido {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .result-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .result-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="header">🎯 DECISOR INTELIGENTE</h1>
+        <p class="subtitle">Descubra a melhor estratégia de Change Management para sua organização</p>
+
+        <form id="decisionForm">
+            <div class="section">
+                <div class="question">1. Qual o prazo para implementar a mudança?</div>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="prazo" value="urgente">
+                        🚨 Urgente (menos de 3 meses)
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="prazo" value="medio">
+                        ⏰ Médio prazo (3-12 meses)
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="prazo" value="longo">
+                        📅 Longo prazo (mais de 12 meses)
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">2. Qual o orçamento disponível para Change Management?</div>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="orcamento" value="limitado">
+                        💰 Limitado
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="orcamento" value="moderado">
+                        💳 Moderado
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="orcamento" value="amplo">
+                        💎 Amplo
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">3. Qual a experiência interna em Change Management?</div>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="experiencia" value="inexperiente">
+                        🌱 Iniciante
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="experiencia" value="intermediario">
+                        📈 Intermediário
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="experiencia" value="experiente">
+                        🎯 Experiente
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">4. Qual a complexidade da mudança?</div>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="complexidade" value="simples">
+                        🔧 Simples
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="complexidade" value="media">
+                        ⚙️ Média
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="complexidade" value="alta">
+                        🧩 Alta
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">5. Qual o nível de resistência esperado?</div>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="resistencia" value="baixa">
+                        😊 Baixa
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="resistencia" value="media">
+                        😐 Média
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="resistencia" value="alta">
+                        😰 Alta
+                    </label>
+                </div>
+            </div>
+
+            <button type="button" class="calculate-btn" onclick="showResult()">Calcular Melhor Estratégia</button>
+        </form>
+
+        <div id="result" class="result-container">
+            <div class="result-title" id="resultTitle"></div>
+            <div class="result-description" id="resultDescription"></div>
+        </div>
+    </div>
+
+    <script>
+        function showResult() {
+            const form = document.getElementById('decisionForm');
+            const result = document.getElementById('result');
+            const title = document.getElementById('resultTitle');
+            const description = document.getElementById('resultDescription');
+
+            const prazo = form.prazo.value;
+            const orcamento = form.orcamento.value;
+            const experiencia = form.experiencia.value;
+            const complexidade = form.complexidade.value;
+            const resistencia = form.resistencia.value;
+
+            if (!prazo || !orcamento || !experiencia || !complexidade || !resistencia) {
+                alert('Por favor, responda todas as perguntas!');
+                return;
+            }
+
+            let estrategia = '';
+            let corClasse = '';
+            let desc = '';
+
+            if (prazo === 'urgente' || orcamento === 'limitado' || experiencia === 'inexperiente') {
+                estrategia = 'Consultoria Externa';
+                corClasse = 'result-consultoria';
+                desc = 'Recomendamos contratar uma consultoria especializada para acelerar e qualificar o processo.';
+            } else if (experiencia === 'experiente' && complexidade !== 'alta') {
+                estrategia = 'Equipe Interna';
+                corClasse = 'result-interno';
+                desc = 'Sua equipe possui experiência e pode liderar a mudança com eficiência.';
+            } else {
+                estrategia = 'Modelo Híbrido';
+                corClasse = 'result-hibrido';
+                desc = 'Uma combinação de equipe interna com apoio externo pode ser ideal para garantir o sucesso.';
+            }
+
+            result.className = 'result-container ' + corClasse;
+            title.textContent = estrategia;
+            description.textContent = desc;
+            result.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
